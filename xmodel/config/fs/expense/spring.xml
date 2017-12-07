@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean
+		id="fsExpenseMainHangDao"
+		parent="KmssExtendDataAreaDao"
+		class="com.landray.kmss.fs.expense.dao.hibernate.FsExpenseMainHangDaoImp">
+		<property
+			name="modelName"
+			value="com.landray.kmss.fs.expense.model.FsExpenseMainHang" />
+	</bean>
+
+	<bean
+		id="fsExpenseMainHangTarget"
+		parent="KmssExtendDataTarget"
+		class="com.landray.kmss.fs.expense.service.spring.FsExpenseMainHangServiceImp">
+		<property
+			name="baseDao">
+			<ref
+				local="fsExpenseMainHangDao" />
+		</property>
+	</bean>
+	<bean
+		id="fsExpenseMainHangService"
+		parent="KmssBaseService">
+		<property
+			name="target">
+			<ref
+				local="fsExpenseMainHangTarget" />
+		</property>
+	</bean>
+
+</beans>
